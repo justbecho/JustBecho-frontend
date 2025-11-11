@@ -5,6 +5,7 @@ import Image from 'next/image'
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSearchExpanded, setIsSearchExpanded] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const searchRef = useRef(null)
@@ -38,14 +39,42 @@ export default function Header() {
       }`}
     >
       {/* -------- TOP HEADER -------- */}
-      <div className="max-w-[1600px] mx-auto px-8 transition-all duration-500 ease-in-out">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 transition-all duration-500 ease-in-out">
         <div
           className={`grid grid-cols-[1fr_auto_1fr] items-center transition-all duration-500 ease-in-out ${
-            isScrolled ? 'py-2' : 'py-5'
+            isScrolled ? 'py-2' : 'py-4'
           }`}
         >
-          {/* Left Spacer */}
-          <div></div>
+          {/* Left (Mobile Menu Icon) */}
+          <div className="flex items-center">
+            <button
+              className="lg:hidden"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                {isMenuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
+          </div>
 
           {/* Center Logo */}
           <div className="flex justify-center transition-transform duration-500 ease-in-out">
@@ -58,8 +87,8 @@ export default function Header() {
                 <Image
                   src="/Just Becho New Logo.png"
                   alt="Logo"
-                  width={180}
-                  height={60}
+                  width={160}
+                  height={55}
                   className="object-contain"
                   priority
                 />
@@ -68,7 +97,7 @@ export default function Header() {
           </div>
 
           {/* Right Section */}
-          <div className="flex justify-end items-center space-x-6 transition-all duration-500 ease-in-out">
+          <div className="hidden sm:flex justify-end items-center space-x-6 transition-all duration-500 ease-in-out">
             {/* Search */}
             <div ref={searchRef} className="relative">
               {isSearchExpanded ? (
@@ -190,9 +219,9 @@ export default function Header() {
         </div>
       </div>
 
-      {/* -------- CATEGORY NAV -------- */}
+      {/* -------- CATEGORY NAV (Desktop Only) -------- */}
       <div
-        className={`border-t transition-all duration-500 ease-in-out ${
+        className={`hidden lg:block border-t transition-all duration-500 ease-in-out ${
           isScrolled ? 'bg-white border-gray-100' : 'bg-transparent border-transparent'
         }`}
       >
@@ -218,6 +247,32 @@ export default function Header() {
           ))}
         </nav>
       </div>
+
+      {/* -------- MOBILE MENU -------- */}
+      {isMenuOpen && (
+        <div
+          className={`lg:hidden absolute top-full left-0 w-full bg-white shadow-md border-t border-gray-100 transition-all duration-500 ease-in-out`}
+        >
+          <nav className="flex flex-col space-y-3 p-4 text-gray-800">
+            {['NEW ARRIVALS', 'WOMEN', 'MEN', 'ACCESSORIES', 'HOME DECOR', 'FOOTWEAR'].map(
+              (item) => (
+                <Link
+                  key={item}
+                  href="#"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="hover:text-primary transition-colors"
+                >
+                  {item}
+                </Link>
+              )
+            )}
+            <div className="flex items-center space-x-4 pt-3 border-t">
+              <Link href="/login" onClick={() => setIsMenuOpen(false)}>Login</Link>
+              <Link href="/cart" onClick={() => setIsMenuOpen(false)}>Cart (0)</Link>
+            </div>
+          </nav>
+        </div>
+      )}
     </header>
   )
 }

@@ -63,19 +63,21 @@ export default function Home() {
     <>
       <main className="min-h-screen bg-white">
         {/* Hero Section with Image */}
-        <section className="relative h-[80vh] md:h-[70vh] overflow-hidden">
+       <section className="relative h-[65vh] sm:h-[75vh] md:h-[85vh] overflow-hidden">
+
 
           <Header />
           
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image
-              src="/home banner.jpg" // Ya fir jo bhi image name hai
-              alt="Just Becho - Buy and Sell Pre-loved Items"
-              fill
-              className="object-cover"
-              priority
-            />
+  src="/home banner.jpg"
+  alt="Just Becho - Buy and Sell Pre-loved Items"
+  fill
+  className="object-cover object-center"
+  priority
+/>
+
             {/* Dark Overlay for better text readability */}
             <div className="absolute inset-0 bg-black/40"></div>
           </div>
