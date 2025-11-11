@@ -13,7 +13,8 @@ export default function Header() {
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
     const handleClickOutside = (e) => {
-      if (searchRef.current && !searchRef.current.contains(e.target)) setIsSearchExpanded(false)
+      if (searchRef.current && !searchRef.current.contains(e.target))
+        setIsSearchExpanded(false)
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
     document.addEventListener('mousedown', handleClickOutside)
@@ -32,245 +33,217 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-colors duration-500 ease-in-out ${
-        isScrolled
-          ? 'bg-white/95 shadow-md text-gray-900'
-          : 'bg-transparent text-white'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
+        isScrolled ? 'bg-white text-gray-900' : 'bg-transparent text-white'
       }`}
+      style={{
+        borderBottom: 'none',
+        boxShadow: isScrolled ? '0 0 8px rgba(0,0,0,0.05)' : 'none',
+      }}
     >
-      {/* -------- TOP HEADER -------- */}
-      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 transition-all duration-500 ease-in-out">
-        <div
-          className={`grid grid-cols-[1fr_auto_1fr] items-center transition-all duration-500 ease-in-out ${
-            isScrolled ? 'py-2' : 'py-4'
-          }`}
-        >
-          {/* Left (Mobile Menu Icon) */}
-          <div className="flex items-center">
-            <button
-              className="lg:hidden"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+      {/* -------- FULL WRAPPER (ensures both sections sync) -------- */}
+      <div
+        className={`w-full transition-all duration-500 ${
+          isScrolled ? 'bg-white' : 'bg-transparent'
+        }`}
+      >
+        {/* -------- TOP HEADER -------- */}
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-8">
+          <div
+            className={`flex items-center justify-between transition-all duration-500 ${
+              isScrolled ? 'py-2' : 'py-4'
+            }`}
+          >
+            {/* Left (Mobile Menu Icon) */}
+            <div className="flex items-center">
+              <button
+                className="lg:hidden"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
-                {isMenuOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                )}
-              </svg>
-            </button>
-          </div>
-
-          {/* Center Logo */}
-          <div className="flex justify-center transition-transform duration-500 ease-in-out">
-            <Link href="/" className="block">
-              <div
-                className={`relative transition-transform duration-500 ease-in-out ${
-                  isScrolled ? 'scale-90' : 'scale-100'
-                }`}
-              >
-                <Image
-                  src="/Just Becho New Logo.png"
-                  alt="Logo"
-                  width={160}
-                  height={55}
-                  className="object-contain"
-                  priority
-                />
-              </div>
-            </Link>
-          </div>
-
-          {/* Right Section */}
-          <div className="hidden sm:flex justify-end items-center space-x-6 transition-all duration-500 ease-in-out">
-            {/* Search */}
-            <div ref={searchRef} className="relative">
-              {isSearchExpanded ? (
-                <form
-                  onSubmit={handleSearchSubmit}
-                  className="flex items-center w-full max-w-xs bg-white border border-gray-200 rounded-full shadow-sm px-3 py-1 transition-all duration-500 ease-in-out"
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
                 >
-                  <input
-                    type="text"
-                    placeholder="Search..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="flex-1 px-2 py-1 text-sm text-gray-800 bg-transparent border-none outline-none"
-                    autoFocus
-                  />
-                  <button
-                    type="submit"
-                    className="p-2 text-gray-600 hover:text-primary transition-colors duration-300"
-                  >
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                      />
-                    </svg>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setIsSearchExpanded(false)}
-                    className="p-2 text-gray-400 hover:text-gray-600 transition-colors duration-300"
-                  >
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  </button>
-                </form>
-              ) : (
-                <button
-                  onClick={() => setIsSearchExpanded(true)}
-                  className={`flex items-center text-sm font-medium transition-colors duration-500 ${
-                    isScrolled
-                      ? 'text-gray-800 hover:text-primary'
-                      : 'text-white hover:text-gray-200'
-                  }`}
-                >
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
+                  {isMenuOpen ? (
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      d="M6 18L18 6M6 6l12 12"
                     />
-                  </svg>
-                </button>
-              )}
+                  ) : (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  )}
+                </svg>
+              </button>
             </div>
 
-            {/* Login */}
-            <Link
-              href="/login"
-              className={`text-sm font-medium transition-colors duration-500 ${
-                isScrolled
-                  ? 'text-gray-800 hover:text-primary'
-                  : 'text-white hover:text-gray-200'
-              }`}
-            >
-              Login
-            </Link>
+            {/* Center Logo */}
+            <div className="flex justify-center flex-grow lg:flex-grow-0">
+              <Link href="/" className="block">
+                <div
+                  className={`relative transition-transform duration-500 ${
+                    isScrolled ? 'scale-90' : 'scale-100'
+                  }`}
+                >
+                  <Image
+                    src="/Just Becho New Logo.png"
+                    alt="Logo"
+                    width={150}
+                    height={50}
+                    className="object-contain"
+                    priority
+                  />
+                </div>
+              </Link>
+            </div>
 
-            {/* Cart */}
-            <Link
-              href="/cart"
-              className={`relative transition-colors duration-500 ${
-                isScrolled
-                  ? 'text-gray-800 hover:text-primary'
-                  : 'text-white hover:text-gray-200'
-              }`}
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+            {/* Right Icons */}
+            <div className="flex items-center space-x-5 sm:space-x-6 justify-end">
+              {/* Search */}
+              <button
+                onClick={() => setIsSearchExpanded(!isSearchExpanded)}
+                className={`transition-colors duration-300 ${
+                  isScrolled
+                    ? 'text-gray-800 hover:text-primary'
+                    : 'text-white hover:text-gray-200'
+                }`}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                />
-              </svg>
-              <span className="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
-                0
-              </span>
-            </Link>
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </button>
+
+              {/* Cart */}
+              <Link
+                href="/cart"
+                className={`relative transition-colors duration-300 ${
+                  isScrolled
+                    ? 'text-gray-800 hover:text-primary'
+                    : 'text-white hover:text-gray-200'
+                }`}
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0z"
+                  />
+                </svg>
+                <span className="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold">
+                  0
+                </span>
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* -------- CATEGORY NAV (Desktop Only) -------- */}
-      <div
-        className={`hidden lg:block border-t transition-all duration-500 ease-in-out ${
-          isScrolled ? 'bg-white border-gray-100' : 'bg-transparent border-transparent'
-        }`}
-      >
-        <nav
-          className={`max-w-[1600px] mx-auto flex justify-center space-x-8 py-3 text-sm font-medium transition-all duration-500 ease-in-out ${
-            isScrolled
-              ? 'text-gray-800 hover:text-primary'
-              : 'text-white hover:text-gray-200'
+        {/* -------- CATEGORY NAV (Desktop Only) -------- */}
+        <div
+          className={`hidden lg:block transition-all duration-500 ${
+            isScrolled ? 'bg-white' : 'bg-transparent'
           }`}
+          style={{
+            borderTop: 'none',
+            borderBottom: 'none',
+            boxShadow: 'none',
+          }}
         >
-          {['NEW ARRIVALS', 'WOMEN', 'MEN', 'ACCESSORIES', 'HOME DECOR', 'FOOTWEAR'].map((item) => (
-            <Link
-              key={item}
-              href="#"
-              className={`transition-colors duration-300 ${
-                isScrolled
-                  ? 'text-gray-800 hover:text-primary'
-                  : 'text-white hover:text-gray-200'
-              }`}
-            >
-              {item}
-            </Link>
-          ))}
-        </nav>
+          <nav
+            className={`max-w-[1600px] mx-auto flex justify-center space-x-8 py-3 text-sm font-medium transition-all duration-500 ${
+              isScrolled ? 'text-gray-800' : 'text-white'
+            }`}
+          >
+            {[
+              'NEW ARRIVALS',
+              'WOMEN',
+              'MEN',
+              'ACCESSORIES',
+              'HOME DECOR',
+              'FOOTWEAR',
+            ].map((item) => (
+              <Link
+                key={item}
+                href="#"
+                className={`transition-colors duration-300 ${
+                  isScrolled
+                    ? 'text-gray-800 hover:text-primary'
+                    : 'text-white hover:text-gray-200'
+                }`}
+              >
+                {item}
+              </Link>
+            ))}
+          </nav>
+        </div>
       </div>
 
       {/* -------- MOBILE MENU -------- */}
       {isMenuOpen && (
         <div
-          className={`lg:hidden absolute top-full left-0 w-full bg-white shadow-md border-t border-gray-100 transition-all duration-500 ease-in-out`}
+          className={`lg:hidden transition-all duration-500 ease-in-out ${
+            isScrolled ? 'bg-white text-gray-800' : 'bg-black/90 text-white'
+          }`}
         >
-          <nav className="flex flex-col space-y-3 p-4 text-gray-800">
-            {['NEW ARRIVALS', 'WOMEN', 'MEN', 'ACCESSORIES', 'HOME DECOR', 'FOOTWEAR'].map(
-              (item) => (
-                <Link
-                  key={item}
-                  href="#"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="hover:text-primary transition-colors"
-                >
-                  {item}
-                </Link>
-              )
-            )}
-            <div className="flex items-center space-x-4 pt-3 border-t">
-              <Link href="/login" onClick={() => setIsMenuOpen(false)}>Login</Link>
-              <Link href="/cart" onClick={() => setIsMenuOpen(false)}>Cart (0)</Link>
-            </div>
+          <nav className="flex flex-col space-y-3 px-6 py-4 text-base font-medium">
+            {[
+              'NEW ARRIVALS',
+              'WOMEN',
+              'MEN',
+              'ACCESSORIES',
+              'HOME DECOR',
+              'FOOTWEAR',
+            ].map((item) => (
+              <Link key={item} href="#" className="hover:text-primary">
+                {item}
+              </Link>
+            ))}
           </nav>
+        </div>
+      )}
+
+      {/* -------- SEARCH BAR (Dropdown) -------- */}
+      {isSearchExpanded && (
+        <div
+          ref={searchRef}
+          className="absolute top-full left-0 right-0 bg-white shadow-md py-3 px-4 flex items-center space-x-2"
+        >
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="flex-1 px-3 py-2 border rounded-md text-gray-700 outline-none"
+          />
+          <button
+            onClick={handleSearchSubmit}
+            className="px-4 py-2 bg-black text-white rounded-md text-sm"
+          >
+            Go
+          </button>
         </div>
       )}
     </header>
