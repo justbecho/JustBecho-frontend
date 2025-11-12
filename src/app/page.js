@@ -118,7 +118,7 @@ export default function Home() {
     <>
       <main className="min-h-screen bg-white">
         {/* Hero Section */}
-        <section className="relative h-[65vh] sm:h-[75vh] md:h-[85vh] overflow-hidden">
+        <section className="relative h-[60vh] sm:h-[75vh] md:h-[85vh] overflow-hidden">
           <Header />
 
           <div className="absolute inset-0 z-0">
@@ -133,27 +133,27 @@ export default function Home() {
           </div>
 
           {/* Scroll Indicator */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
-            <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
-              <div className="w-1 h-3 bg-white rounded-full mt-2"></div>
+          <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+            <div className="w-5 h-8 border-2 border-white rounded-full flex justify-center">
+              <div className="w-1 h-2 bg-white rounded-full mt-1"></div>
             </div>
           </div>
         </section>
 
         {/* Categories Section */}
-        <section className="py-20 bg-white">
-          <div className="max-w-[1700px] mx-auto px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl  text-text-primary mb-4 tracking-tight">
+        <section className="py-12 sm:py-20 bg-white">
+          <div className="max-w-[1700px] mx-auto px-4 sm:px-6">
+            <div className="text-center mb-10 sm:mb-16">
+              <h2 className="text-2xl sm:text-4xl text-text-primary mb-3 sm:mb-4 tracking-tight">
                 SHOP BY CATEGORY
               </h2>
-              <p className="text-lg text-text-secondary max-w-2xl mx-auto font-normal">
+              <p className="text-sm sm:text-lg text-text-secondary max-w-2xl mx-auto font-normal px-4">
                 Discover collections curated for every style and need
               </p>
             </div>
 
-            {/* Circular Category Cards */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-10 lg:gap-12">
+            {/* Circular Category Cards - Mobile Responsive */}
+            <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4 sm:gap-6 lg:gap-10">
               {[
                 { name: "MEN'S FASHION", img: '/categories/backpacks.jpg', href: '/categories/men' },
                 { name: "WOMEN'S FASHION", img: '/categories/doffel.jpg', href: '/categories/women' },
@@ -166,9 +166,9 @@ export default function Home() {
                 <Link
                   href={cat.href}
                   key={index}
-                  className="group flex flex-col items-center text-center transition-all duration-500 transform hover:-translate-y-2"
+                  className="group flex flex-col items-center text-center transition-all duration-300 transform hover:-translate-y-1"
                 >
-                  <div className="relative w-36 h-36 sm:w-40 sm:h-40 lg:w-44 lg:h-44 rounded-full overflow-hidden shadow-lg group-hover:shadow-2xl group-hover:scale-110 transition-all duration-500">
+                  <div className="relative w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 rounded-full overflow-hidden shadow-md group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">
                     <Image
                       src={cat.img}
                       alt={cat.name}
@@ -176,7 +176,7 @@ export default function Home() {
                       className="object-cover object-center"
                     />
                   </div>
-                  <h3 className="mt-4 text-base sm:text-lg text-text-primary group-hover:text-primary transition-colors duration-300">
+                  <h3 className="mt-2 sm:mt-3 text-xs sm:text-sm md:text-base text-text-primary group-hover:text-primary transition-colors duration-300 leading-tight px-1">
                     {cat.name}
                   </h3>
                 </Link>
@@ -187,38 +187,38 @@ export default function Home() {
 
         {/* Category-wise Sections - All White Background */}
         {categorySections.map((category) => (
-          <section key={category.name} className="py-20 bg-white">
-            <div className="max-w-[1700px] mx-auto px-6">
+          <section key={category.name} className="py-12 sm:py-20 bg-white">
+            <div className="max-w-[1700px] mx-auto px-4 sm:px-6">
               {/* Heading */}
-              <div className="text-center mb-16">
-                <h2 className="text-4xl text-gray-900 mb-3 tracking-tight">
+              <div className="text-center mb-10 sm:mb-16">
+                <h2 className="text-2xl sm:text-4xl text-gray-900 mb-2 sm:mb-3 tracking-tight">
                   {category.name}
                 </h2>
-                <p className="text-gray-500 text-lg font-normal">
+                <p className="text-sm sm:text-lg text-gray-500 font-normal px-4">
                   Explore our curated collection of {category.name.toLowerCase()}
                 </p>
               </div>
 
-              {/* Product Grid - Same Width as Categories */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {/* Product Grid - Mobile Responsive */}
+              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
                 {category.products.map((item) => (
                   <div
                     key={item.id}
                     className="group cursor-pointer"
                   >
-                    {/* Large Square Image Container - Same Size as Category Circles */}
-                    <div className="relative w-full aspect-square overflow-hidden mb-4">
+                    {/* Image Container */}
+                    <div className="relative w-full aspect-square overflow-hidden mb-2 sm:mb-3 rounded-lg">
                       <Image
                         src={item.image}
                         alt={item.name}
                         fill
-                        className="object-cover object-center transform group-hover:scale-105 transition-transform duration-500"
+                        className="object-cover object-center transform group-hover:scale-105 transition-transform duration-300"
                       />
 
-                      {/* Bestseller Badge - Only if it's a bestseller */}
+                      {/* Bestseller Badge */}
                       {item.isBestseller && (
-                        <div className="absolute top-3 left-3">
-                          <span className="bg-black text-white px-3 py-1 text-sm font-medium">
+                        <div className="absolute top-1 sm:top-2 left-1 sm:left-2">
+                          <span className="bg-black text-white px-2 py-1 text-xs font-medium">
                             Bestseller
                           </span>
                         </div>
@@ -226,21 +226,21 @@ export default function Home() {
                     </div>
 
                     {/* Product Info */}
-                    <div className="text-left">
-                      <h3 className="text-gray-800 font-normal text-base mb-1 leading-tight">
+                    <div className="text-left px-1">
+                      <h3 className="text-gray-800 font-normal text-sm sm:text-base mb-1 leading-tight line-clamp-2">
                         {item.name}
                       </h3>
-                      <p className="text-gray-900 font-medium text-base">{item.price}</p>
+                      <p className="text-gray-900 font-medium text-sm sm:text-base">{item.price}</p>
                     </div>
                   </div>
                 ))}
               </div>
 
               {/* View More Link */}
-              <div className="text-center mt-16">
+              <div className="text-center mt-10 sm:mt-16">
                 <Link
                   href={category.href}
-                  className="text-gray-900 font-medium text-lg hover:underline underline-offset-4 transition-all duration-300"
+                  className="text-gray-900 font-medium text-base sm:text-lg hover:underline underline-offset-4 transition-all duration-300"
                 >
                   View More in {category.name}
                 </Link>
@@ -249,27 +249,26 @@ export default function Home() {
           </section>
         ))}
 
-        {/* Brands Carousel Section - Before Footer */}
-        <section className="py-16 bg-white ">
+        {/* Brands Carousel Section - Mobile Responsive */}
+        <section className="py-10 sm:py-16 bg-white border-t border-gray-100">
           <div className="w-full overflow-hidden">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-3">
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="text-xl sm:text-3xl font-bold text-gray-900 mb-2 sm:mb-3">
                 Featured Brands
               </h2>
-              
             </div>
             
-            {/* Infinite Moving Carousel */}
+            {/* Infinite Moving Carousel - Mobile Responsive */}
             <div className="relative">
-              <div className="flex animate-marquee whitespace-nowrap">
+              <div className="flex animate-marquee-mobile sm:animate-marquee whitespace-nowrap">
                 {duplicatedBrands.map((brand, index) => (
                   <div
                     key={index}
-                    className="inline-flex items-center justify-center mx-8 group"
+                    className="inline-flex items-center justify-center mx-3 sm:mx-6 group"
                   >
-                    <div className="flex flex-col items-center space-y-3">
-                      {/* Brand Logo Container */}
-                      <div className="w-20 h-20 sm:w-24 sm:h-24 bg-white rounded-full shadow-lg flex items-center justify-center p-3 group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 border border-gray-200 overflow-hidden">
+                    <div className="flex flex-col items-center space-y-2 sm:space-y-3">
+                      {/* Brand Logo Container - Mobile Size */}
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-white rounded-full shadow-sm sm:shadow-lg flex items-center justify-center p-1 sm:p-2 group-hover:shadow-md sm:group-hover:shadow-xl transition-all duration-300 group-hover:scale-105 sm:group-hover:scale-110 border border-gray-100 sm:border-gray-200 overflow-hidden">
                         <img
                           src={brand.logo}
                           alt={brand.name}
@@ -277,8 +276,8 @@ export default function Home() {
                           loading="lazy"
                         />
                       </div>
-                      {/* Brand Name */}
-                      <span className="text-sm font-medium text-gray-700 whitespace-nowrap">
+                      {/* Brand Name - Mobile Size */}
+                      <span className="text-xs sm:text-sm font-medium text-gray-700 whitespace-nowrap">
                         {brand.name}
                       </span>
                     </div>
