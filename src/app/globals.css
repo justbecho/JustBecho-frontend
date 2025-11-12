@@ -1,35 +1,35 @@
-/* src/app/globals.css */
-/* src/app/globals.css */
+/* globals.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-/* Custom styles agar chahiye */
-@layer base {
-  html {
-    font-family: 'Inter', system-ui, sans-serif;
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
   }
-  
-  body {
-    background-color: #ffffff;
+  100% {
+    transform: translateX(-50%);
   }
 }
 
-@layer components {
-  .btn-primary {
-    @apply bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 font-medium transition-colors;
-  }
-  
-  .btn-secondary {
-    @apply border border-black text-black px-6 py-3 rounded-lg hover:bg-gray-50 font-medium transition-colors;
-  }
-  
-  .card {
-    @apply bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow;
-  }
-  
-  .input-field {
-    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
-  }
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+/* Pause animation on hover */
+.animate-marquee:hover {
+  animation-play-state: paused;
 }

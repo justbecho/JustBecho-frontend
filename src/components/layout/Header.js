@@ -1,249 +1,192 @@
 'use client'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isSearchExpanded, setIsSearchExpanded] = useState(false)
-  const [searchQuery, setSearchQuery] = useState('')
-  const searchRef = useRef(null)
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
-    const handleClickOutside = (e) => {
-      if (searchRef.current && !searchRef.current.contains(e.target))
-        setIsSearchExpanded(false)
-    }
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault()
-    if (searchQuery.trim()) console.log('Search for:', searchQuery)
-    setIsSearchExpanded(false)
-    setSearchQuery('')
-  }
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
-        isScrolled ? 'bg-white text-gray-900' : 'bg-transparent text-white'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled ? 'bg-white text-gray-900 shadow-sm' : 'bg-transparent text-white'
       }`}
-      style={{
-        borderBottom: 'none',
-        boxShadow: isScrolled ? '0 0 8px rgba(0,0,0,0.05)' : 'none',
-      }}
     >
-      {/* -------- FULL WRAPPER (ensures both sections sync) -------- */}
-      <div
-        className={`w-full transition-all duration-500 ${
-          isScrolled ? 'bg-white' : 'bg-transparent'
-        }`}
-      >
-        {/* -------- TOP HEADER -------- */}
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-8">
-          <div
-            className={`flex items-center justify-between transition-all duration-500 ${
-              isScrolled ? 'py-2' : 'py-4'
-            }`}
-          >
-            {/* Left (Mobile Menu Icon) */}
-            <div className="flex items-center">
-              <button
-                className="lg:hidden"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-              >
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  {isMenuOpen ? (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  ) : (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  )}
-                </svg>
-              </button>
-            </div>
-
-            {/* Center Logo */}
-            <div className="flex justify-center flex-grow lg:flex-grow-0">
-              <Link href="/" className="block">
-                <div
-                  className={`relative transition-transform duration-500 ${
-                    isScrolled ? 'scale-90' : 'scale-100'
-                  }`}
-                >
-                  <Image
-                    src="/Just Becho New Logo.png"
-                    alt="Logo"
-                    width={150}
-                    height={50}
-                    className="object-contain"
-                    priority
-                  />
-                </div>
-              </Link>
-            </div>
-
-            {/* Right Icons */}
-            <div className="flex items-center space-x-5 sm:space-x-6 justify-end">
-              {/* Search */}
-              <button
-                onClick={() => setIsSearchExpanded(!isSearchExpanded)}
-                className={`transition-colors duration-300 ${
+      <div className="w-[90%] mx-auto">
+        <div className="flex items-center justify-between py-2.5">
+          {/* LEFT: Search + Sell Now */}
+          <div className="hidden md:flex flex-1 items-center space-x-5">
+            {/* Search Bar */}
+            <div className="relative flex items-center max-w-[220px] w-full border-b border-gray-400">
+              <input
+                type="text"
+                placeholder="Search for products..."
+                className={`flex-1 bg-transparent outline-none py-1.5 text-[15px] ${
                   isScrolled
-                    ? 'text-gray-800 hover:text-primary'
-                    : 'text-white hover:text-gray-200'
+                    ? 'text-gray-800 placeholder-gray-500'
+                    : 'text-white placeholder-white/80'
+                }`}
+              />
+              <button
+                className={`px-2 transition ${
+                  isScrolled ? 'text-gray-600' : 'text-white'
                 }`}
               >
                 <svg
-                  className="w-6 h-6"
+                  className="w-5 h-5"
                   fill="none"
                   stroke="currentColor"
+                  strokeWidth={2}
                   viewBox="0 0 24 24"
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                   />
                 </svg>
               </button>
+            </div>
 
-              {/* Cart */}
-              <Link
-                href="/cart"
-                className={`relative transition-colors duration-300 ${
-                  isScrolled
-                    ? 'text-gray-800 hover:text-primary'
-                    : 'text-white hover:text-gray-200'
+            {/* Sell Now Button */}
+            <Link
+              href="/sell"
+              className={`px-5 py-1.5 rounded-full font-medium text-[15px] transition-all duration-300 ${
+                isScrolled
+                  ? 'bg-black text-white hover:bg-gray-800'
+                  : 'bg-white text-black hover:bg-gray-100'
+              }`}
+            >
+              Sell Now
+            </Link>
+          </div>
+
+          {/* CENTER: Logo */}
+          <div className="flex justify-center flex-1">
+            <Link href="/">
+              <Image
+                src="/Just Becho Logo JB.png"
+                alt="Just Becho"
+                width={75}
+                height={75}
+                className={`transition-transform duration-500 ${
+                  isScrolled ? 'scale-90' : 'scale-100'
                 }`}
+              />
+            </Link>
+          </div>
+
+          {/* RIGHT: Icons */}
+          <div className="flex items-center space-x-5 flex-1 justify-end">
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden focus:outline-none"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              <svg
+                className="w-7 h-7"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
+                {isMenuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
+
+            {/* Desktop Options */}
+            <div className="hidden md:flex items-center space-x-5 text-[15px]">
+              <Link href="/login" className="hover:text-primary">
+                Login / Signup
+              </Link>
+
+              <Link href="/wishlist" className="hover:text-primary">
                 <svg
                   className="w-6 h-6"
                   fill="none"
                   stroke="currentColor"
+                  strokeWidth={2}
                   viewBox="0 0 24 24"
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0z"
+                    d="M4.318 6.318a4.5 4.5 0 
+                    016.364 0L12 7.636l1.318-1.318a4.5 
+                    4.5 0 116.364 6.364L12 21.364l-7.682-8.682a4.5 
+                    4.5 0 010-6.364z"
                   />
                 </svg>
-                <span className="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold">
+              </Link>
+
+              <Link href="/cart" className="relative hover:text-primary">
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 
+                    13l-2.293 2.293c-.63.63-.184 
+                    1.707.707 1.707H17m0 0a2 2 0 
+                    100 4 2 2 0 000-4zm-8 2a2 2 0 
+                    11-4 0 2 2 0z"
+                  />
+                </svg>
+                <span className="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
                   0
                 </span>
               </Link>
             </div>
           </div>
         </div>
-
-        {/* -------- CATEGORY NAV (Desktop Only) -------- */}
-        <div
-          className={`hidden lg:block transition-all duration-500 ${
-            isScrolled ? 'bg-white' : 'bg-transparent'
-          }`}
-          style={{
-            borderTop: 'none',
-            borderBottom: 'none',
-            boxShadow: 'none',
-          }}
-        >
-          <nav
-            className={`max-w-[1600px] mx-auto flex justify-center space-x-8 py-3 text-sm font-medium transition-all duration-500 ${
-              isScrolled ? 'text-gray-800' : 'text-white'
-            }`}
-          >
-            {[
-              'NEW ARRIVALS',
-              'WOMEN',
-              'MEN',
-              'ACCESSORIES',
-              'HOME DECOR',
-              'FOOTWEAR',
-            ].map((item) => (
-              <Link
-                key={item}
-                href="#"
-                className={`transition-colors duration-300 ${
-                  isScrolled
-                    ? 'text-gray-800 hover:text-primary'
-                    : 'text-white hover:text-gray-200'
-                }`}
-              >
-                {item}
-              </Link>
-            ))}
-          </nav>
-        </div>
       </div>
 
-      {/* -------- MOBILE MENU -------- */}
+      {/* MOBILE MENU */}
       {isMenuOpen && (
         <div
-          className={`lg:hidden transition-all duration-500 ease-in-out ${
+          className={`md:hidden transition-all duration-300 ${
             isScrolled ? 'bg-white text-gray-800' : 'bg-black/90 text-white'
           }`}
         >
-          <nav className="flex flex-col space-y-3 px-6 py-4 text-base font-medium">
-            {[
-              'NEW ARRIVALS',
-              'WOMEN',
-              'MEN',
-              'ACCESSORIES',
-              'HOME DECOR',
-              'FOOTWEAR',
-            ].map((item) => (
-              <Link key={item} href="#" className="hover:text-primary">
-                {item}
-              </Link>
-            ))}
+          <nav className="flex flex-col px-6 py-4 space-y-3 text-base">
+            <Link href="/sell" className="hover:text-primary">
+              Sell Now
+            </Link>
+            <Link href="/login" className="hover:text-primary">
+              Login / Signup
+            </Link>
+            <Link href="/wishlist" className="hover:text-primary">
+              Wishlist
+            </Link>
+            <Link href="/cart" className="hover:text-primary">
+              Cart
+            </Link>
           </nav>
-        </div>
-      )}
-
-      {/* -------- SEARCH BAR (Dropdown) -------- */}
-      {isSearchExpanded && (
-        <div
-          ref={searchRef}
-          className="absolute top-full left-0 right-0 bg-white shadow-md py-3 px-4 flex items-center space-x-2"
-        >
-          <input
-            type="text"
-            placeholder="Search..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="flex-1 px-3 py-2 border rounded-md text-gray-700 outline-none"
-          />
-          <button
-            onClick={handleSearchSubmit}
-            className="px-4 py-2 bg-black text-white rounded-md text-sm"
-          >
-            Go
-          </button>
         </div>
       )}
     </header>
