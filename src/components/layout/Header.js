@@ -20,7 +20,7 @@ export default function Header() {
       }`}
     >
       <div className="w-[95%] sm:w-[90%] mx-auto">
-        <div className="flex items-center justify-between py-2 sm:py-2.5">
+        <div className="flex items-center justify-between py-4 sm:py-5">
           {/* LEFT: Search + Sell Now - Desktop Only */}
           <div className="hidden md:flex flex-1 items-center space-x-4">
             {/* Search Bar */}
@@ -68,16 +68,16 @@ export default function Header() {
             </Link>
           </div>
 
-          {/* CENTER: Logo - Always Center */}
+          {/* CENTER: Logo - Perfect Center */}
           <div className="absolute left-1/2 transform -translate-x-1/2">
-            <Link href="/">
+            <Link href="/" className="flex items-center justify-center">
               <Image
                 src="/Just Becho Logo JB.png"
                 alt="Just Becho"
-                width={isScrolled ? 60 : 70}
-                height={isScrolled ? 60 : 70}
+                width={isScrolled ? 70 : 80}
+                height={isScrolled ? 70 : 80}
                 className={`transition-all duration-500 ${
-                  isScrolled ? 'h-12 w-auto' : 'h-14 w-auto'
+                  isScrolled ? 'h-16 w-auto' : 'h-18 w-auto'
                 }`}
                 priority
               />
