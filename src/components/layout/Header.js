@@ -21,7 +21,7 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Categories with dropdown data - Nike website jaisa
+  // Categories with dropdown data - Updated for user listings
   const categories = [
     {
       name: "MEN'S FASHION",
@@ -29,24 +29,24 @@ export default function Header() {
       dropdown: {
         sections: [
           {
-            title: "TOPWEAR",
-            items: ["T-Shirts", "Shirts", "Hoodies", "Sweaters", "Jackets", "Blazers"]
+            title: "CLOTHING",
+            items: ["T-Shirts", "Shirts", "Jeans", "Jackets", "Suits", "Activewear"]
           },
           {
-            title: "BOTTOMWEAR", 
-            items: ["Jeans", "Trousers", "Shorts", "Track Pants", "Cargos"]
+            title: "FOOTWEAR", 
+            items: ["Sneakers", "Formal Shoes", "Sports Shoes", "Sandals", "Boots"]
           },
           {
-            title: "INDIAN WEAR",
-            items: ["Kurtas", "Sherwanis", "Dhotis", "Nehru Jackets", "Pathani Suits"]
-          },
-          {
-            title: "SPORTS WEAR",
-            items: ["Sports T-Shirts", "Track Pants", "Shorts", "Jackets"]
+            title: "ACCESSORIES",
+            items: ["Watches", "Sunglasses", "Bags", "Belts", "Wallets", "Jewelry"]
           },
           {
             title: "BRANDS",
-            items: ["Balenciaga", "Armani", "Prada", "Versace", "Louis Vuitton", "Gucci"]
+            items: ["Nike", "Adidas", "Zara", "H&M", "Levi's", "Puma"]
+          },
+          {
+            title: "SELL YOUR ITEM",
+            items: ["List Clothing", "List Footwear", "List Accessories", "Quick Sell", "Get Quote"]
           }
         ]
       }
@@ -57,24 +57,24 @@ export default function Header() {
       dropdown: {
         sections: [
           {
-            title: "WESTERN WEAR",
-            items: ["Dresses", "Tops", "Jeans", "Skirts", "Jumpsuits", "Co-ords"]
+            title: "CLOTHING",
+            items: ["Dresses", "Tops", "Jeans", "Skirts", "Ethnic Wear", "Activewear"]
           },
           {
-            title: "INDIAN WEAR",
-            items: ["Sarees", "Kurtis", "Lehengas", "Salwar Suits", "Blouses", "Anarkalis"]
+            title: "FOOTWEAR",
+            items: ["Heels", "Flats", "Sneakers", "Sandals", "Boots"]
           },
           {
             title: "ACCESSORIES",
-            items: ["Handbags", "Jewelry", "Scarves", "Belts", "Hair Accessories"]
+            items: ["Handbags", "Jewelry", "Watches", "Sunglasses", "Scarves"]
           },
           {
-            title: "SPORTS WEAR", 
-            items: ["Sports Bras", "Leggings", "Shorts", "Tracksuits"]
+            title: "BRANDS", 
+            items: ["Zara", "H&M", "Mango", "Forever 21", "Nike", "Adidas"]
           },
           {
-            title: "BRANDS",
-            items: ["Chanel", "Dior", "Gucci", "Louis Vuitton", "Prada", "Zara"]
+            title: "SELL YOUR ITEM",
+            items: ["List Clothing", "List Footwear", "List Accessories", "Quick Sell", "Get Quote"]
           }
         ]
       }
@@ -85,24 +85,24 @@ export default function Header() {
       dropdown: {
         sections: [
           {
-            title: "BOYS FASHION",
-            items: ["T-Shirts", "Shirts", "Shorts", "Jeans", "Jackets", "Suits"]
+            title: "BOYS",
+            items: ["T-Shirts", "Shirts", "Jeans", "Footwear", "Accessories"]
           },
           {
-            title: "GIRLS FASHION",
-            items: ["Dresses", "Tops", "Skirts", "Lehengas", "Frocks", "Sets"]
+            title: "GIRLS",
+            items: ["Dresses", "Tops", "Skirts", "Footwear", "Accessories"]
           },
           {
             title: "INFANTS",
-            items: ["Onesies", "Rompers", "Sleepwear", "Sets", "Bodysuits"]
+            items: ["Onesies", "Rompers", "Sets", "Footwear", "Toys"]
           },
           {
-            title: "ACCESSORIES",
-            items: ["Shoes", "Bags", "Toys", "Watches", "Stationery"]
+            title: "BRANDS",
+            items: ["Carter's", "Gap Kids", "H&M Kids", "Zara Kids", "Nike Kids"]
           },
           {
-            title: "SCHOOL WEAR",
-            items: ["Uniforms", "Shoes", "Bags", "Stationery", "Lunch Boxes"]
+            title: "SELL YOUR ITEM",
+            items: ["List Kids Items", "List Toys", "Quick Sell", "Get Quote"]
           }
         ]
       }
@@ -113,24 +113,24 @@ export default function Header() {
       dropdown: {
         sections: [
           {
-            title: "MEN'S FOOTWEAR",
-            items: ["Sneakers", "Formal Shoes", "Sports Shoes", "Sandals", "Loafers", "Boots"]
+            title: "MEN'S",
+            items: ["Sneakers", "Sports", "Formal", "Casual", "Sandals"]
           },
           {
-            title: "WOMEN'S FOOTWEAR", 
-            items: ["Heels", "Flats", "Sandals", "Sports Shoes", "Boots", "Wedges"]
+            title: "WOMEN'S", 
+            items: ["Heels", "Flats", "Sneakers", "Sports", "Sandals"]
           },
           {
-            title: "KIDS FOOTWEAR",
-            items: ["School Shoes", "Sandals", "Sports Shoes", "Casual Shoes", "Slippers"]
-          },
-          {
-            title: "SPORTS FOOTWEAR",
-            items: ["Running Shoes", "Training Shoes", "Basketball Shoes", "Football Shoes"]
+            title: "KIDS",
+            items: ["School Shoes", "Sneakers", "Sandals", "Sports"]
           },
           {
             title: "BRANDS",
-            items: ["Nike", "Adidas", "Puma", "Gucci", "Balenciaga", "Jimmy Choo"]
+            items: ["Nike", "Adidas", "Puma", "Skechers", "Bata"]
+          },
+          {
+            title: "SELL YOUR ITEM",
+            items: ["List Footwear", "Get Valuation", "Quick Sell"]
           }
         ]
       }
@@ -142,79 +142,79 @@ export default function Header() {
         sections: [
           {
             title: "MEN'S WATCHES",
-            items: ["Luxury", "Sports", "Casual", "Smart Watches", "Chronograph"]
+            items: ["Luxury", "Sports", "Casual", "Smart", "Chronograph"]
           },
           {
             title: "WOMEN'S WATCHES",
-            items: ["Luxury", "Fashion", "Casual", "Smart Watches", "Diamond"] 
-          },
-          {
-            title: "UNISEX WATCHES",
-            items: ["Minimalist", "Sports", "Luxury", "Smart Watches"]
+            items: ["Luxury", "Fashion", "Casual", "Smart", "Diamond"] 
           },
           {
             title: "BRANDS",
-            items: ["Rolex", "Omega", "Tag Heuer", "Fossil", "Apple Watch", "Casio"]
+            items: ["Rolex", "Omega", "Fossil", "Casio", "Apple Watch"]
           },
           {
             title: "FEATURES",
-            items: ["Chronograph", "Automatic", "Water Resistant", "Smart Features", "GPS"]
+            items: ["Automatic", "Chronograph", "Water Resistant", "Smart"]
+          },
+          {
+            title: "SELL YOUR ITEM",
+            items: ["List Watch", "Get Valuation", "Quick Sell"]
           }
         ]
       }
     },
     {
-      name: "ELECTRONICS",
-      href: '/categories/electronics',
+      name: "COSMETICS & PERFUME",
+      href: '/categories/cosmetics',
       dropdown: {
         sections: [
           {
-            title: "MOBILES & TABLETS",
-            items: ["Smartphones", "Tablets", "Accessories", "Cases", "Power Banks"]
+            title: "MAKEUP",
+            items: ["Foundation", "Lipstick", "Mascara", "Eyeshadow", "Blush"]
           },
           {
-            title: "AUDIO",
-            items: ["Headphones", "Earphones", "Speakers", "Soundbars", "Earbuds"]
+            title: "SKINCARE",
+            items: ["Face Creams", "Serums", "Face Wash", "Toners", "Masks"]
           },
           {
-            title: "WEARABLES", 
-            items: ["Smart Watches", "Fitness Bands", "VR Headsets", "Smart Glasses"]
-          },
-          {
-            title: "LAPTOPS & PC",
-            items: ["Laptops", "Desktops", "Monitors", "Keyboards", "Mouse"]
+            title: "PERFUMES", 
+            items: ["Men's", "Women's", "Unisex", "Luxury", "Body Sprays"]
           },
           {
             title: "BRANDS",
-            items: ["Apple", "Samsung", "Sony", "JBL", "Bose", "OnePlus"]
+            items: ["MAC", "L'Oreal", "Lakme", "Chanel", "Dior"]
+          },
+          {
+            title: "SELL YOUR ITEM",
+            items: ["List Cosmetics", "List Perfumes", "Quick Sell"]
           }
         ]
       }
     },
     {
-      name: "HOME & LIVING",
-      href: '/categories/home',
+      name: "TOYS & COLLECTIBLES",
+      href: '/categories/toys',
       dropdown: {
         sections: [
           {
-            title: "FURNITURE",
-            items: ["Sofas", "Beds", "Dining Tables", "Wardrobes", "Chairs", "Desks"]
+            title: "ACTION FIGURES",
+            items: ["Superheroes", "Movie Characters", "Anime", "Collectible"]
           },
           {
-            title: "DECOR",
-            items: ["Wall Art", "Showpieces", "Clocks", "Mirrors", "Plants", "Vases"]
+            title: "EDUCATIONAL",
+            items: ["Building Blocks", "Puzzles", "Science Kits", "Art Supplies"]
           },
           {
-            title: "KITCHEN & DINING",
-            items: ["Cookware", "Dinner Sets", "Appliances", "Storage", "Cutlery"]
+            title: "OUTDOOR", 
+            items: ["Ride-Ons", "Sports", "Play Sets", "Water Toys"]
           },
           {
-            title: "BEDDING",
-            items: ["Bedsheets", "Pillows", "Blankets", "Curtains", "Mattresses"]
+            title: "BRANDS",
+            items: ["Lego", "Barbie", "Hot Wheels", "Marvel", "Disney"]
           },
           {
-            title: "LIGHTING",
-            items: ["Lamps", "LED Lights", "Chandeliers", "Wall Lights", "Table Lamps"]
+            title: "SELL YOUR ITEM",
+            items: ["List Toys", "List Collectibles", "Quick Sell"]
           }
         ]
       }
@@ -226,27 +226,28 @@ export default function Header() {
         sections: [
           {
             title: "BAGS",
-            items: ["Handbags", "Backpacks", "Wallets", "Luggage", "Clutches", "Totes"]
+            items: ["Handbags", "Backpacks", "Wallets", "Luggage", "Clutches"]
           },
           {
             title: "JEWELRY",
-            items: ["Necklaces", "Earrings", "Rings", "Bracelets", "Watches", "Anklets"]
+            items: ["Necklaces", "Earrings", "Rings", "Bracelets", "Watches"]
           },
           {
             title: "EYEWEAR",
-            items: ["Sunglasses", "Spectacles", "Contact Lenses", "Reading Glasses"]
+            items: ["Sunglasses", "Spectacles", "Reading Glasses"]
           },
           {
-            title: "OTHER ACCESSORIES",
-            items: ["Belts", "Caps", "Scarves", "Ties", "Perfumes", "Wallets"]
+            title: "OTHER",
+            items: ["Belts", "Caps", "Scarves", "Ties", "Perfumes"]
           },
           {
-            title: "TRAVEL",
-            items: ["Luggage", "Travel Bags", "Passport Covers", "Neck Pillows"]
+            title: "SELL YOUR ITEM",
+            items: ["List Accessories", "Get Valuation", "Quick Sell"]
           }
         ]
       }
     }
+    
   ]
 
   return (
@@ -464,26 +465,29 @@ export default function Header() {
                   {category.name}
                 </Link>
 
-                {/* FULL WIDTH DROPDOWN - NIKE STYLE */}
+                {/* COMPACT DROPDOWN - IMPROVED DESIGN */}
                 {activeCategory === category.name && (
                   <div 
-                    className="fixed left-0 right-0 top-[140px] bg-white shadow-2xl border-t border-gray-100 py-12 z-[60]"
+                    className="fixed left-0 right-0 top-[140px] bg-white shadow-2xl border-t border-gray-100 py-8 z-[60]"
                     onMouseEnter={() => setActiveCategory(category.name)}
                     onMouseLeave={() => setActiveCategory(null)}
                   >
-                    <div className="w-[95%] sm:w-[90%] mx-auto">
-                      <div className="grid grid-cols-5 gap-12">
+                    <div className="w-[95%] sm:w-[90%] mx-auto max-w-5xl">
+                      <div className="grid grid-cols-5 gap-6">
                         {category.dropdown.sections.map((section, sectionIndex) => (
-                          <div key={sectionIndex} className="space-y-4">
-                            <h3 className="text-gray-900 text-base font-medium tracking-wider uppercase mb-4 border-b border-gray-200 pb-2">
+                          <div key={sectionIndex} className="space-y-2">
+                            {/* Section Title - Compact */}
+                            <h3 className="text-gray-900 text-[13px] font-semibold tracking-wide uppercase mb-1">
                               {section.title}
                             </h3>
-                            <ul className="space-y-3">
+                            
+                            {/* Section Items - Compact */}
+                            <ul className="space-y-1">
                               {section.items.map((item, itemIndex) => (
                                 <li key={itemIndex}>
                                   <Link
                                     href={`${category.href}?subcategory=${item.toLowerCase().replace(' ', '-')}`}
-                                    className="text-gray-600 text-sm font-light tracking-wide hover:text-gray-900 transition-colors duration-200 block py-1 hover:translate-x-1 transform transition-transform"
+                                    className="text-gray-600 text-[12px] font-normal hover:text-gray-900 transition-colors duration-200 block py-0.5"
                                   >
                                     {item}
                                   </Link>
@@ -494,14 +498,14 @@ export default function Header() {
                         ))}
                       </div>
                       
-                      {/* View All Button - Centered */}
-                      <div className="mt-12 pt-8 border-t border-gray-100 text-center">
+                      {/* View All Button - Compact */}
+                      <div className="mt-8 pt-6 border-t border-gray-200 text-center">
                         <Link
                           href={category.href}
-                          className="inline-flex items-center text-gray-900 text-base font-medium tracking-wider uppercase hover:text-gray-700 transition-colors duration-200 border-b-2 border-gray-900 pb-1"
+                          className="inline-flex items-center text-gray-900 text-[13px] font-semibold tracking-wide uppercase hover:text-gray-700 transition-colors duration-200 group"
                         >
                           View All {category.name} 
-                          <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-3 h-3 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
                         </Link>
